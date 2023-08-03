@@ -12,6 +12,15 @@ import {
 } from "#imports";
 import { $sanctumFetch } from "../utils/$sanctumFetch";
 
+type SanctumUser = {
+  id: number;
+  name: string;
+  email: string;
+  email_verified_at: Date;
+  created_at: Date;
+  updated_at: Date;
+};
+
 type Error = any;
 export type Credentials = {
   username: string;
@@ -37,7 +46,9 @@ type UseSanctumAuth<DataT> = {
   isInitialized: Ref<boolean>;
 };
 
-export const useSanctumAuth = <DataT>(): UseSanctumAuth<DataT> => {
+export const useSanctumAuth = <
+  DataT = SanctumUser
+>(): UseSanctumAuth<DataT> => {
   const data = useState<DataT | null>("user", () => null);
   const isFetchingUser = useState("is-fetching-user", () => false);
   const error = useState<Error | null>("user-error", () => null);
