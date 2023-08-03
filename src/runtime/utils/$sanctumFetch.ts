@@ -1,5 +1,5 @@
 import { useLocalStorage } from "@vueuse/core";
-import { useCookie, useRequestHeaders } from "#imports";
+import { useCookie, useRequestHeaders, useRuntimeConfig } from "#imports";
 
 type NitroFetchArgs = Parameters<typeof $fetch>;
 // type NitroFetchRequest = NitroFetchArgs["0"]
@@ -9,8 +9,10 @@ export const $sanctumFetch = <T = unknown>(
   url: string,
   opts?: NitroFetchOptions | undefined
 ) => {
-  const apiUrl = "http://localhost:8000";
-  const appUrl = "http://localhost:3000";
+  const config = useRuntimeConfig();
+
+  const apiUrl = config.public.apiUrl ?? "http://localhost:8000";
+  const appUrl = config.public.appUrl ?? "http://localhost:3000";
 
   if (typeof url == "string" && url.startsWith("/")) {
     url = apiUrl + url;
