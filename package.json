@@ -1,6 +1,6 @@
 {
   "name": "@kiki.im.dev/nuxt-sanctum",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Access your sanctum auth through Nuxt app",
   "repository": "@kiki.im.dev/nuxt-sanctum",
   "license": "MIT",
